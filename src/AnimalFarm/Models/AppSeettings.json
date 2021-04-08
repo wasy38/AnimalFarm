@@ -1,0 +1,3 @@
+{
+  "ConnectionString": "Data Source=(local)\\SQLEXPRESS; Database=LabsWebAppDB; Persist Security Info=false; User ID='sa'; Password='264426*&F'; MultipleActiveResultSets=True; Trusted_Connection=False;"
+}

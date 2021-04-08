@@ -1,4 +1,4 @@
-﻿using AnimalFarm.Models.Entities;
+﻿ using AnimalFarm.Models.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -10,14 +10,14 @@ namespace AnimalFarm.Models
 {
     public class FarmContext: DbContext
     {
-        public DbSet<Animal> Animals { get; set; }
-        public DbSet<AnimalPlace> AnimalPlaces { get; set; }
-        public DbSet<AnimalType> Types { get; set; }
-        public DbSet<Employee> Employees { get; set; }
-        public DbSet<Equipment> Equipments { get; set; }
-        public DbSet<Feed> Feeds { get; set; }
-        public DbSet<Place> Places { get; set; }
-        public DbSet<Process> Processes { get; set; }
+        public DbSet<Animal> Animalss { get; set; }
+        public DbSet<AnimalPlace> AnimalPlacess { get; set; }
+        public DbSet<AnimalType> Typess { get; set; }
+        public DbSet<Employee> Employeess { get; set; }
+        public DbSet<Equipment> Equipmentss { get; set; }
+        public DbSet<Feed> Feedss { get; set; }
+        public DbSet<Place> Placess { get; set; }
+        public DbSet<Process> Processess { get; set; }
         public FarmContext()
         {
             Database.EnsureDeleted();
