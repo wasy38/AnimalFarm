@@ -11,10 +11,11 @@ namespace AnimalFarm.Models.Entities
     {
         [Key]
         public int Id { get; init; }
-        [Required]
-        public int AnimalTypeId { get; set; }
-        public IQueryable<AnimalType> Types { get; set; }
+
         public DateTime Birthday { get; set; }
-        public bool IsMasculine { get; set; }
+
+        public int SpeciesId { get; set; }
+        public Species Species { get; set; }
+
     }
 }

@@ -1,4 +1,4 @@
-﻿ using AnimalFarm.Models.Entities;
+﻿using AnimalFarm.Models.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -10,23 +10,12 @@ namespace AnimalFarm.Models
 {
     public class FarmContext: DbContext
     {
-        public DbSet<Animal> Animalss { get; set; }
-        public DbSet<AnimalPlace> AnimalPlacess { get; set; }
-        public DbSet<AnimalType> Typess { get; set; }
-        public DbSet<Employee> Employeess { get; set; }
-        public DbSet<Equipment> Equipmentss { get; set; }
-        public DbSet<Feed> Feedss { get; set; }
-        public DbSet<Place> Placess { get; set; }
-        public DbSet<Process> Processess { get; set; }
-        public FarmContext()
-        {
-            Database.EnsureDeleted();
-            Database.EnsureCreated();
-        }
+        public DbSet<Species> Specieses { get; set; }
+        public DbSet<Animal> Animals { get; set; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            //"ConnectionString": "Data Source=(local)\\SQLEXPRESS; Database=LabsWebAppDB; Persist Security Info=false; User ID='sa'; Password='sa'; MultipleActiveResultSets=True; Trusted_Connection=False;",
-            optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=relationsdb;Trusted_Connection=True;");
+            optionsBuilder.UseSqlServer(@"Server=(local)\SQLEXPRESS;Database=AnimalFarm;Trusted_Connection=True;");
         }
 
     }
