@@ -14,8 +14,9 @@ namespace AnimalFarm.Models.Entities
 
         [Required]
         [MaxLength(100,ErrorMessage ="Слишком много букв")]
+        [StringLength(100)]
         public string Name { get; set; }
 
-        public IEnumerable<Animal> Animals { get; set; }
+        public ICollection<Animal> Animals { get; set; }
     }
 }
