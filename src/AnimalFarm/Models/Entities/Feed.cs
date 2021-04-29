@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AnimalFarm.Models.Entities
 {
-    public record Feed
+    public class Feed
     {
         [Key]
         public int Id { get; init; }

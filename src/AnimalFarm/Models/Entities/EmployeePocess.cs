@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AnimalFarm.Models.Entities
 {
-    public record EmployeeProcess
+    public class EmployeeProcess
     {
 
         public int? EmployeeId { get; set; }

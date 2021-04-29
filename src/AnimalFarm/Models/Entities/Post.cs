@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AnimalFarm.Models.Entities
 {
-    public record Post
+    public class Post
     {
         [Key]
         public int Id { get; set; }

@@ -1,10 +1,5 @@
 ﻿using AnimalFarm.Models.Entities;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AnimalFarm.Models
 {
@@ -72,7 +67,7 @@ namespace AnimalFarm.Models
                     {
                         j.HasKey(t => new { t.AnimalPlaceId, t.ProcessId });
                     });
-
+           
             modelBuilder.Entity<Employee>()
                 .HasMany(c => c.Processes)
                 .WithMany(d => d.Employees)
