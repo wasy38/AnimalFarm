@@ -24,9 +24,10 @@ namespace AnimalFarm.ViewModels
                         CurrentTable = new Views.TableAnimals();
                         TableCreate = new Views.AddAnimal();
                         break;
-                    //case "2":
-                    //    CurrentTable = new Views.TableAnimalPlaces();
-                    //    break;
+                    case "2":
+                        CurrentTable = new Views.TableEmployee();
+                        TableCreate = new Views.AddEmployee();
+                        break;
 
                 }
 

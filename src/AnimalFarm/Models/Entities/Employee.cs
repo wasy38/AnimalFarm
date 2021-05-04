@@ -15,9 +15,6 @@ namespace AnimalFarm.Models.Entities
         public int PostId { get; set; }
         public Post Post { get; set; }
 
-        public ICollection<Process> Processes { get; set; }
-        public ICollection<EmployeeProcess> EmployeePocesses { get; set; }
-
         [Required]
         [MaxLength(25, ErrorMessage = "Дебил куда так много буков?")]
         public string FirstName { get; init; }
@@ -39,9 +36,9 @@ namespace AnimalFarm.Models.Entities
         [Required]
         [MaxLength(100, ErrorMessage = "Дебил куда так много буков?")]
         public string Email { get; init; }
-
-        public DateTime ChangeStatusData { get; set; }
-
         public bool IsWork { get; set; }
+
+        public ICollection<Process> Processes { get; set; }
+        public ICollection<EmployeeProcess> EmployeePocesses { get; set; }
     }
 }

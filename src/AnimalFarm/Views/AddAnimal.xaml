@@ -16,15 +16,15 @@
     </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="10*"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="25"/>
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0">
             <TextBlock Text="Birthday:" Width="100" Height="20" TextWrapping="Wrap"/>
-            <DatePicker Width="150" SelectedDate="{Binding newAnimal.Birthday}"/>
+            <DatePicker Width="150" SelectedDate="{Binding sellectedDay}"/>
             <TextBlock Text="Sex:" Width="100" Height="20" TextWrapping="Wrap"/>
             <ComboBox Width="150">
-                <ComboBoxItem Content="Male" IsSelected="{Binding newAnimal.IsMasculine}"/>
+                <ComboBoxItem Content="Male" IsSelected="{Binding sellectedSex}"/>
                 <ComboBoxItem Content="Female"/>
             </ComboBox>
             <TextBlock Text="Species:" Width="100" Height="20" TextWrapping="Wrap"/>

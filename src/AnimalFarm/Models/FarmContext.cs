@@ -5,6 +5,7 @@ namespace AnimalFarm.Models
 {
     public class FarmContext : DbContext
     {
+        static public readonly FarmContext _context = new();
         public DbSet<Species> Specieses { get; set; }
         public DbSet<Animal> Animals { get; set; }
         public DbSet<Place> Places { get; set; }

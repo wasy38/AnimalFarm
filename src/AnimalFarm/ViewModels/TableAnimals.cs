@@ -12,30 +12,29 @@ namespace AnimalFarm.ViewModels
 {
     class TableAnimals : BaseViewModel
     {
-        
-         public TableAnimals()
+
+        public TableAnimals()
         {
 
-            _context = new FarmContext();
-            SpeciesName = new ObservableCollection<string>(_context.Specieses.Select(x => x.Name));
-            newAnimal.IsMasculine = true;
-            var gridAnimals = new ObservableCollection<Animal>(_context.Animals.Include(x => x.Species));
+            SpeciesName = new ObservableCollection<string>(FarmContext._context.Specieses.Select(x => x.Name));
+            sellectedSex = true;
+            var gridAnimals = new ObservableCollection<Animal>(FarmContext._context.Animals.Include(x => x.Species));
             GridAnimals = CollectionViewSource.GetDefaultView(gridAnimals);
 
             CreateAnimal = new RelayCommand(obj =>
             {
-                newAnimal.SpeciesId = _context.Specieses.Where(x => x.Name == SellectedSpecies).FirstOrDefault().Id;          
-                if ((_context.Add(newAnimal)).State != EntityState.Added)
+                newAnimal = new() { Birthday = sellectedDay, SpeciesId = FarmContext._context.Specieses.Where(x => x.Name == SellectedSpecies).FirstOrDefault().Id, IsMasculine = sellectedSex };
+                if ((FarmContext._context.Add(newAnimal)).State != EntityState.Added)
                     throw new DbUpdateException($"\"{newAnimal}\" не удалось сохранить.");
 
-                if (_context.SaveChanges() < 1)
+                if (FarmContext._context.SaveChanges() < 1)
                     throw new DbUpdateException($"\"{newAnimal}\" не удалось сохранить в Базу.");
-                newAnimal = null;
                 gridAnimals.Add(newAnimal);
-             },_=> {
-                 if (newAnimal.Birthday == null) return false;
-                return newAnimal.Birthday > new DateTime(1990, 1, 1) && newAnimal.IsMasculine != null && SellectedSpecies != null; 
-             });
+                newAnimal = null;
+            }, _ => {
+                if (sellectedDay == null) return false;
+                return sellectedDay > new DateTime(1990, 1, 1) && sellectedSex != null && SellectedSpecies != null;
+            });
 
 
             SosachParty = new RelayCommand(_ =>
@@ -51,24 +50,18 @@ namespace AnimalFarm.ViewModels
         }
 
         #region public field
-
-        public Animal newAnimal = new Animal();
-        public string SellectedSpecies
-        {
-            get;set;
-        }
+        public DateTime? sellectedDay { get; set; }
+        public bool? sellectedSex { get; set; }
+        
+        public Animal newAnimal;
+        public string SellectedSpecies { get;set; }
 
         #endregion
 
         #region collections
-        public ObservableCollection<bool> SexName { get; set; }
         public ObservableCollection<string> SpeciesName { get; set; }
         public ICollectionView GridAnimals { get; }
 
-        #endregion
-
-        #region private field
-        private FarmContext _context;
         #endregion
 
         #region Metods
