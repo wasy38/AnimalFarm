@@ -23,16 +23,25 @@ namespace AnimalFarm.ViewModels
 
             CreateEmployee = new RelayCommand(obj =>
             {
-                newEmployee = new() {};
+                newEmployee = new() {FirstName=sellectedFirst, SecondName=sellectedSecond, Patronymic=sellectedPatronymic, Birthday=sellectedDay, Email=sellectedEmail, Phone=sellectedPhone, PostId=FarmContext._context.Posts.Where(x => x.Name == sellectedPost).FirstOrDefault().Id, IsWork=sellectedStatus };
                 if ((FarmContext._context.Add(newEmployee)).State != EntityState.Added)
                     throw new DbUpdateException($"\"{newEmployee}\" не удалось сохранить.");
 
                 if (FarmContext._context.SaveChanges() < 1)
                     throw new DbUpdateException($"\"{newEmployee}\" не удалось сохранить в Базу.");
+                sellectedDay = null;
+                sellectedEmail = null;
+                sellectedFirst = null;
+                sellectedPatronymic = null;
+                sellectedPhone = null;
+                sellectedPost = null;
+                sellectedSecond = null;
+                sellectedStatus = true;
                 gridEmployee.Add(newEmployee);
                 newEmployee = null;
             }, _ => {
-                return true;
+                if (sellectedDay == null) return false;
+                return sellectedDay > new DateTime(1900, 1, 1) && sellectedStatus != null && sellectedPost != null && sellectedFirst != null && sellectedSecond != null && sellectedPatronymic != null && sellectedPhone != null && sellectedEmail != null;
             });
 
 

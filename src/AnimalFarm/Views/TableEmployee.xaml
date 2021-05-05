@@ -25,7 +25,7 @@
                 <DataGridTextColumn Header="Second Name" Binding="{Binding SecondName}" MinWidth="85"/>
                 <DataGridTextColumn Header="Patronymic" Binding="{Binding Patronymic}" MinWidth="85"/>
                 <DataGridTextColumn Header="Birth Day" Binding="{Binding Birthday, StringFormat={}{0:dd.MM.yyyy}}" MinWidth="80"/>
-                <DataGridTextColumn Header="Past" Binding="{Binding Past.Name}" MinWidth="70"/>
+                <DataGridTextColumn Header="Post" Binding="{Binding Post.Name}" MinWidth="70"/>
                 <DataGridTextColumn Header="Email" Binding="{Binding Email}" MinWidth="85"/>
                 <DataGridTextColumn Header="Phone" Binding="{Binding Phone}" MinWidth="85"/>
                 <DataGridTextColumn Header="Status" Binding="{Binding IsWork, Converter={StaticResource BoolToStatus}}" MinWidth="85"/>

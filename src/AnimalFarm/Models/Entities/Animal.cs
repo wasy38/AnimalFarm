@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace AnimalFarm.Models.Entities
 {
-    public class Animal : ViewModels.Base.BaseViewModel
+    public class Animal
     {
         [Key]
         public int Id { get; init; }

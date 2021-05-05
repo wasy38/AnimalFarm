@@ -19,7 +19,5 @@ namespace AnimalFarm.Models.Entities
         [MaxLength(100, ErrorMessage = "Привышено количесто символов")]
         [StringLength(100)]
         public string Name { get; set; }
-
-        public int Count { get; set; }
     }
 }

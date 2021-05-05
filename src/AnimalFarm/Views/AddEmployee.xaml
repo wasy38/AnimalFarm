@@ -18,7 +18,7 @@
 
         <ScrollViewer Grid.Row="0">
             <StackPanel>
-                <TextBlock Text="First name:" Width="100" Height="20" TextWrapping="Wrap"/>
+                <TextBlock Text="First name:" Width="100" Height="20" TextWrapping="Wrap" Margin="0 10 0 0"/>
                 <TextBox Width="150" Text="{Binding sellectedFirst}"/>
                 <TextBlock Text="Second name:" Width="100" Height="20" TextWrapping="Wrap"/>
                 <TextBox Width="150" Text="{Binding sellectedSecond}"/>
@@ -33,7 +33,7 @@
                 <TextBlock Text="Email:" Width="100" Height="20" TextWrapping="Wrap"/>
                 <TextBox Width="150" Text="{Binding sellectedEmail}"/>
                 <TextBlock Text="Status:" Width="100" Height="20" TextWrapping="Wrap"/>
-                <ComboBox Width="150">
+                <ComboBox Width="150" Margin="0 0 0 15">
                     <ComboBoxItem Content="In Work" IsSelected="{Binding sellectedStatus}"/>
                     <ComboBoxItem Content="Don't working"/>
                 </ComboBox>

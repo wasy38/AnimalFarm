@@ -10,10 +10,28 @@ namespace AnimalFarm.ViewModels
         public MainWindowViewModel()
         {
 
-            CloseFrame = new RelayCommand(obj=>
+            CloseFrame = new RelayCommand(_=>
             {
                 CurrentTable = null;
                 TableCreate = null;
+            });
+
+            RefreshFrame = new RelayCommand(_=>
+            {
+                CurrentTable = null;
+                switch (Value)
+                {
+                    case 1:
+                        CurrentTable = new Views.TableAnimals();
+                        break;
+                    case 2:
+                        CurrentTable = new Views.TableEmployee();
+                        break;
+                    case 3:
+                        CurrentTable = new Views.TableEquipment();
+                        break;
+
+                }
             });
 
             OpenFrame = new RelayCommand(obj =>
@@ -21,22 +39,32 @@ namespace AnimalFarm.ViewModels
                 switch (obj as string)
                 {
                     case "1":
+                        Value = 1;
                         CurrentTable = new Views.TableAnimals();
                         TableCreate = new Views.AddAnimal();
                         break;
                     case "2":
+                        Value = 2;
                         CurrentTable = new Views.TableEmployee();
                         TableCreate = new Views.AddEmployee();
                         break;
-
+                    case "3":
+                        Value = 3;
+                        CurrentTable = new Views.TableEquipment();
+                        TableCreate = new Views.AddEquipment();
+                        break;
                 }
 
             });
         }
+
         #region Metods
         public RelayCommand OpenFrame { get; }
         public RelayCommand CloseFrame { get; }
+        public RelayCommand RefreshFrame { get; }
         #endregion
+
+        int Value = 0;
         public UserControl CurrentTable { get; set; }
         public UserControl TableCreate { get; set; }
     }
