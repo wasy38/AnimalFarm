@@ -14,6 +14,7 @@ namespace AnimalFarm.ViewModels
             {
                 CurrentTable = null;
                 TableCreate = null;
+                Value = 0;
             });
 
             RefreshFrame = new RelayCommand(_=>

@@ -21,8 +21,8 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="2*"/>
+            <RowDefinition Height="6*"/>
+            <RowDefinition Height="10*"/>
         </Grid.RowDefinitions>
         <StackPanel>
             <Button Command="{Binding CloseFrame}" BorderBrush="White" Content="Close table" Margin="20 5 30 0"/>
@@ -39,7 +39,7 @@
                 <Button Command="{Binding OpenFrame}" CommandParameter="1" Content="Animals" />
                     <Button Command="{Binding OpenFrame}" CommandParameter="2" Content="Employees" />
                     <Button Command="{Binding OpenFrame}" CommandParameter="3" Content="Equipment" />
-                    <Button Command="{Binding OpenFrame}" CommandParameter="4" Content="tb4" />
+                    <Button Command="{Binding OpenFrame}" CommandParameter="4" Content="Animal places" />
                     <Button Command="{Binding OpenFrame}" CommandParameter="5" Content="Processes" />
             </StackPanel>         
         </ScrollViewer>
