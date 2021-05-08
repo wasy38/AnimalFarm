@@ -29,8 +29,6 @@
             </ComboBox>
             <TextBlock Text="Species:" Width="100" Height="20" TextWrapping="Wrap"/>
             <ComboBox Width="150" ItemsSource="{Binding SpeciesName}" SelectedItem="{Binding SellectedSpecies, Mode=OneWayToSource}"/>
-            <TextBlock Text="Place:" Width="100" Height="20" TextWrapping="Wrap"/>
-            <ComboBox Width="150" ItemsSource="{Binding PlaceName}" SelectedItem="{Binding sellectedPlace, Mode=OneWayToSource}"/>
         </StackPanel>
         <Button Grid.Row="1" Content="Add new animal" Command="{Binding CreateAnimal}"/>
     </Grid>

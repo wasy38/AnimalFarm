@@ -54,6 +54,11 @@ namespace AnimalFarm.ViewModels
                         CurrentTable = new Views.TableEquipment();
                         TableCreate = new Views.AddEquipment();
                         break;
+                    case "4":
+                        Value = 4;
+                        CurrentTable = new Views.TableAnimalPlace();
+                        TableCreate = new Views.AddAnimalPlace();
+                        break;
                 }
 
             });

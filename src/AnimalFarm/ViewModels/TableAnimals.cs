@@ -17,32 +17,22 @@ namespace AnimalFarm.ViewModels
         {
 
             SpeciesName = new ObservableCollection<string>(FarmContext._context.Specieses.Select(x => x.Name));
-            PlaceName = new ObservableCollection<string>(FarmContext._context.Places.Select(x => x.Name));
             sellectedSex = true;
-            sellectedPlace = null;
             var gridAnimals = new ObservableCollection<Animal>(FarmContext._context.Animals.Include(x => x.Species));
             GridAnimals = CollectionViewSource.GetDefaultView(gridAnimals);
 
             CreateAnimal = new RelayCommand(obj =>
             {
-                if (sellectedPlace!=null)
                 newAnimal = new() { Birthday = sellectedDay, SpeciesId = FarmContext._context.Specieses.Where(x => x.Name == SellectedSpecies).FirstOrDefault().Id, IsMasculine = sellectedSex };
                 //Add animal
                 if ((FarmContext._context.Add(newAnimal)).State != EntityState.Added)
                     throw new DbUpdateException($"\"{newAnimal}\" не удалось сохранить.");
                 if (FarmContext._context.SaveChanges() < 1)
                     throw new DbUpdateException($"\"{newAnimal}\" не удалось сохранить в Базу.");
-                //Add place
-                newAnimalPlace = new() { PlaceId = FarmContext._context.Places.Where(x => x.Name == sellectedPlace).FirstOrDefault().Id, AnimalId = newAnimal.Id, Lease = DateTime.Now };
-                if ((FarmContext._context.Add(newAnimalPlace)).State != EntityState.Added)
-                    throw new DbUpdateException($"\"{newAnimalPlace}\" не удалось сохранить.");
-                if (FarmContext._context.SaveChanges() < 1)
-                    throw new DbUpdateException($"\"{newAnimalPlace}\" не удалось сохранить в Базу.");
                 //
                 sellectedDay = null;
                 SellectedSpecies = null;
                 sellectedSex = true;
-                sellectedPlace = null;
                 gridAnimals.Add(newAnimal);
                 newAnimal = null;
             }, _ => {
@@ -71,12 +61,10 @@ namespace AnimalFarm.ViewModels
         
         public Animal newAnimal;
         public string SellectedSpecies { get;set; }
-        public string sellectedPlace { get; set; }
 
         #endregion
 
         #region collections
-        public ObservableCollection<string> PlaceName { get; set; }
         public ObservableCollection<string> SpeciesName { get; set; }
         public ICollectionView GridAnimals { get; }
 
