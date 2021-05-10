@@ -17,8 +17,8 @@
         <Button Content="Сосыч ПАТИ!!!" Command="{Binding SosachParty}"/>
         <DataGrid Grid.Row="1" IsReadOnly="True" CanUserAddRows="False" Grid.Column="1" Name="dg" ItemsSource="{Binding GridAnimalPlace}" AutoGenerateColumns="False">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="ID Animal" Binding="{Binding IdAnimal}" MinWidth="25"/>
-                <DataGridTextColumn Header="Place" MinWidth="80" Binding="{Binding PlaceName}"/>
+                <DataGridTextColumn Header="ID Animal" Binding="{Binding AnimalId}" MinWidth="25"/>
+                <DataGridTextColumn Header="Place" MinWidth="80" Binding="{Binding Place.Name}"/>
                 <DataGridTextColumn Header="Change date" Binding="{Binding Lease}" MinWidth="80"/>
             </DataGrid.Columns>
         </DataGrid>

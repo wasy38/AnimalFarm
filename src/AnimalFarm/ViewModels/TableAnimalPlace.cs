@@ -2,6 +2,7 @@
 using AnimalFarm.Models.Entities;
 using AnimalFarm.ViewModels.Base;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
@@ -16,23 +17,23 @@ namespace AnimalFarm.ViewModels
         {
             PlaceName = new ObservableCollection<string>(FarmContext._context.Places.Select(x => x.Name));
             IdAnimal = new ObservableCollection<int>(FarmContext._context.Animals.Select(x => x.Id));
-            var gridAnimalPlace = new ObservableCollection<AnimalPlace>(FarmContext._context.AnimalPlaces);
+            var gridAnimalPlace = new ObservableCollection<AnimalPlace>(FarmContext._context.AnimalPlaces.Include(x => x.Place));
             GridAnimalPlace = CollectionViewSource.GetDefaultView(gridAnimalPlace);
 
             CreateAnimalPlace = new RelayCommand(obj =>
             {
-                newAnimalPlace = new() { };
+                newAnimalPlace = new() { AnimalId = FarmContext._context.Animals.Where(x => x.Id == sellectedAnimal).FirstOrDefault().Id, Lease= DateTime.Now, PlaceId = FarmContext._context.Places.Where(x => x.Name == sellectedPlace).FirstOrDefault().Id };
                 if ((FarmContext._context.Add(newAnimalPlace)).State != EntityState.Added)
                     throw new DbUpdateException($"\"{newAnimalPlace}\" не удалось сохранить.");
 
                 if (FarmContext._context.SaveChanges() < 1)
                     throw new DbUpdateException($"\"{newAnimalPlace}\" не удалось сохранить в Базу.");
-                // = sellectedName null;
+                sellectedAnimal = null;
                 gridAnimalPlace.Add(newAnimalPlace);
                 newAnimalPlace = null;
             }, _ =>
             {
-                return true; //sellectedName != null;
+                return sellectedPlace!=null && sellectedAnimal!= default;
             });
 
 
@@ -52,7 +53,7 @@ namespace AnimalFarm.ViewModels
 
         public AnimalPlace newAnimalPlace;
         public string sellectedPlace { get; set; }
-        public int sellectedAnimal {get;set;}
+        public int? sellectedAnimal {get;set;}
 
         #endregion
 

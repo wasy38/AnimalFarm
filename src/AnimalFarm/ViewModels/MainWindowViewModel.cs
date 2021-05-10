@@ -31,6 +31,9 @@ namespace AnimalFarm.ViewModels
                     case 3:
                         CurrentTable = new Views.TableEquipment();
                         break;
+                    case 4:
+                        CurrentTable = new Views.TableAnimalPlace();
+                        break;
 
                 }
             });

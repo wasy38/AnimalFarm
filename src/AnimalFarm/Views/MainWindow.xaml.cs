@@ -8,7 +8,6 @@ namespace AnimalFarm.View
         public MainWindow()
         {
             InitializeComponent();
-            //DataContext = new MainWindowViewModel(new FarmContext());
         }
 
 

@@ -56,8 +56,6 @@ namespace AnimalFarm.ViewModels
         #region public field
         public DateTime? sellectedDay { get; set; }
         public bool? sellectedSex { get; set; }
-
-        public AnimalPlace newAnimalPlace;
         
         public Animal newAnimal;
         public string SellectedSpecies { get;set; }
