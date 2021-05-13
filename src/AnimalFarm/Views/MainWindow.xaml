@@ -36,11 +36,14 @@
                         <Setter Property="BorderBrush" Value="White"/>
                     </Style>
                 </StackPanel.Resources>
-                <Button Command="{Binding OpenFrame}" CommandParameter="1" Content="Animals" />
-                    <Button Command="{Binding OpenFrame}" CommandParameter="2" Content="Employees" />
-                    <Button Command="{Binding OpenFrame}" CommandParameter="3" Content="Equipment" />
-                    <Button Command="{Binding OpenFrame}" CommandParameter="4" Content="Animal places" />
-                    <Button Command="{Binding OpenFrame}" CommandParameter="5" Content="Processes" />
+                    <Button Command="{Binding OpenFrame}" CommandParameter="6" Content="Speecieses" />
+                    <Button Command="{Binding OpenFrame}" CommandParameter="7" Content="Posts" />
+                    <Button Command="{Binding OpenFrame}" CommandParameter="8" Content="Places" />
+                    <Button Command="{Binding OpenFrame}" CommandParameter="1" Content="Animals" />
+                    <Button Command="{Binding OpenFrame}" CommandParameter="2" Content="Employeeses" />
+                    <Button Command="{Binding OpenFrame}" CommandParameter="3" Content="Equipments" />
+                    <Button Command="{Binding OpenFrame}" CommandParameter="4" Content="Animal placeses" />
+                    <Button Command="{Binding OpenFrame}" CommandParameter="5" Content="Processeses" />
             </StackPanel>         
         </ScrollViewer>
         <ContentControl Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" Content="{Binding CurrentTable}"/>

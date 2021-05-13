@@ -29,6 +29,7 @@ namespace AnimalFarm.ViewModels
                 if (FarmContext._context.SaveChanges() < 1)
                     throw new DbUpdateException($"\"{newAnimalPlace}\" не удалось сохранить в Базу.");
                 sellectedAnimal = null;
+                sellectedPlace = null;
                 gridAnimalPlace.Add(newAnimalPlace);
                 newAnimalPlace = null;
             }, _ =>

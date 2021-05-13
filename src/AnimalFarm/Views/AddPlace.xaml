@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="AnimalFarm.Views.AddEquipment"
+﻿<UserControl x:Class="AnimalFarm.Views.AddPlace"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="200" Background="White">
     <UserControl.DataContext>
-        <vm:TableEquipment/>
+        <vm:TablePlace/>
     </UserControl.DataContext>
     <Grid>
         <Grid.RowDefinitions>
@@ -15,9 +15,9 @@
             <RowDefinition Height="25"/>
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <TextBlock Text="Equipment name:" Width="100" Height="20" TextWrapping="Wrap" TextAlignment="Center"/>
+            <TextBlock Text="Place name:" Width="100" Height="20" TextWrapping="Wrap" TextAlignment="Center"/>
             <TextBox Text="{Binding sellectedName, UpdateSourceTrigger=PropertyChanged}" Width="150" />
         </StackPanel>
-        <Button Grid.Row="1" Content="Add new equipment" Command="{Binding CreateEquipment}"/>
+        <Button Grid.Row="1" Content="Add new place" Command="{Binding CreatePlace}"/>
     </Grid>
 </UserControl>
