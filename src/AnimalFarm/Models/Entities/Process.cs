@@ -17,16 +17,12 @@ namespace AnimalFarm.Models.Entities
         [StringLength(100)]
         public string Name { get; set; }
 
-        public ICollection<AnimalPlace> AnimalPlaces { get; set; }
         public ICollection<AnimalPlaceProcess> AnimalPlaceProcesses { get; set; }
 
-        public ICollection<Employee> Employees { get; set; }
         public ICollection<EmployeeProcess> EmployeePocesses { get; set; }
 
-        public ICollection<Feed> Feeds { get; set; }
         public ICollection<FeedProcess> FeedPocesses { get; set; }
 
-        public ICollection<Equipment> Equipments { get; set; }
         public ICollection<EquipmentProcess> EquipmentPocesses { get; set; }
     }
 }

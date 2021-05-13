@@ -13,8 +13,7 @@ namespace AnimalFarm.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    Count = table.Column<int>(type: "int", nullable: false)
+                    Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -117,50 +116,54 @@ namespace AnimalFarm.Migrations
                 name: "EquipmentProcesses",
                 columns: table => new
                 {
-                    EquipmentId = table.Column<int>(type: "int", nullable: false),
-                    ProcessId = table.Column<int>(type: "int", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    EquipmentId = table.Column<int>(type: "int", nullable: true),
+                    ProcessId = table.Column<int>(type: "int", nullable: true),
                     Date = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_EquipmentProcesses", x => new { x.EquipmentId, x.ProcessId });
+                    table.PrimaryKey("PK_EquipmentProcesses", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_EquipmentProcesses_Equipments_ProcessId",
-                        column: x => x.ProcessId,
+                        name: "FK_EquipmentProcesses_Equipments_EquipmentId",
+                        column: x => x.EquipmentId,
                         principalTable: "Equipments",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_EquipmentProcesses_Processes_EquipmentId",
-                        column: x => x.EquipmentId,
+                        name: "FK_EquipmentProcesses_Processes_ProcessId",
+                        column: x => x.ProcessId,
                         principalTable: "Processes",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
                 name: "FeedProcesses",
                 columns: table => new
                 {
-                    FeedId = table.Column<int>(type: "int", nullable: false),
-                    ProcessId = table.Column<int>(type: "int", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    FeedId = table.Column<int>(type: "int", nullable: true),
+                    ProcessId = table.Column<int>(type: "int", nullable: true),
                     Date = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_FeedProcesses", x => new { x.FeedId, x.ProcessId });
+                    table.PrimaryKey("PK_FeedProcesses", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_FeedProcesses_Feeds_ProcessId",
-                        column: x => x.ProcessId,
+                        name: "FK_FeedProcesses_Feeds_FeedId",
+                        column: x => x.FeedId,
                         principalTable: "Feeds",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_FeedProcesses_Processes_FeedId",
-                        column: x => x.FeedId,
+                        name: "FK_FeedProcesses_Processes_ProcessId",
+                        column: x => x.ProcessId,
                         principalTable: "Processes",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -188,25 +191,27 @@ namespace AnimalFarm.Migrations
                 name: "EmployeeProcesses",
                 columns: table => new
                 {
-                    EmployeeId = table.Column<int>(type: "int", nullable: false),
-                    ProcessId = table.Column<int>(type: "int", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    EmployeeId = table.Column<int>(type: "int", nullable: true),
+                    ProcessId = table.Column<int>(type: "int", nullable: true),
                     Date = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_EmployeeProcesses", x => new { x.EmployeeId, x.ProcessId });
+                    table.PrimaryKey("PK_EmployeeProcesses", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_EmployeeProcesses_Employees_ProcessId",
-                        column: x => x.ProcessId,
+                        name: "FK_EmployeeProcesses_Employees_EmployeeId",
+                        column: x => x.EmployeeId,
                         principalTable: "Employees",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_EmployeeProcesses_Processes_EmployeeId",
-                        column: x => x.EmployeeId,
+                        name: "FK_EmployeeProcesses_Processes_ProcessId",
+                        column: x => x.ProcessId,
                         principalTable: "Processes",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -240,26 +245,33 @@ namespace AnimalFarm.Migrations
                 name: "AnimalPlaceProcesses",
                 columns: table => new
                 {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     AnimalPlaceId = table.Column<int>(type: "int", nullable: false),
                     ProcessId = table.Column<int>(type: "int", nullable: false),
                     Date = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_AnimalPlaceProcesses", x => new { x.AnimalPlaceId, x.ProcessId });
+                    table.PrimaryKey("PK_AnimalPlaceProcesses", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_AnimalPlaceProcesses_AnimalPlaces_ProcessId",
-                        column: x => x.ProcessId,
+                        name: "FK_AnimalPlaceProcesses_AnimalPlaces_AnimalPlaceId",
+                        column: x => x.AnimalPlaceId,
                         principalTable: "AnimalPlaces",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_AnimalPlaceProcesses_Processes_AnimalPlaceId",
-                        column: x => x.AnimalPlaceId,
+                        name: "FK_AnimalPlaceProcesses_Processes_ProcessId",
+                        column: x => x.ProcessId,
                         principalTable: "Processes",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AnimalPlaceProcesses_AnimalPlaceId",
+                table: "AnimalPlaceProcesses",
+                column: "AnimalPlaceId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_AnimalPlaceProcesses_ProcessId",
@@ -282,6 +294,11 @@ namespace AnimalFarm.Migrations
                 column: "SpeciesId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_EmployeeProcesses_EmployeeId",
+                table: "EmployeeProcesses",
+                column: "EmployeeId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_EmployeeProcesses_ProcessId",
                 table: "EmployeeProcesses",
                 column: "ProcessId");
@@ -292,9 +309,19 @@ namespace AnimalFarm.Migrations
                 column: "PostId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_EquipmentProcesses_EquipmentId",
+                table: "EquipmentProcesses",
+                column: "EquipmentId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_EquipmentProcesses_ProcessId",
                 table: "EquipmentProcesses",
                 column: "ProcessId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_FeedProcesses_FeedId",
+                table: "FeedProcesses",
+                column: "FeedId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_FeedProcesses_ProcessId",

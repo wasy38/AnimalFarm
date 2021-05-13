@@ -12,7 +12,6 @@ namespace AnimalFarm.Models.Entities
         [Key]
         public int Id { get; init; }
 
-        public ICollection<Process> Processes { get; set; }
         public ICollection<EquipmentProcess> EquipmentProcesses { get; set; }
 
         [Required]

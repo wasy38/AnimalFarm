@@ -34,7 +34,9 @@ namespace AnimalFarm.ViewModels
                     case 4:
                         CurrentTable = new Views.TableAnimalPlace();
                         break;
-
+                    case 5:
+                        CurrentTable = new Views.TableProcess();
+                        break;
                 }
             });
 
@@ -61,6 +63,11 @@ namespace AnimalFarm.ViewModels
                         Value = 4;
                         CurrentTable = new Views.TableAnimalPlace();
                         TableCreate = new Views.AddAnimalPlace();
+                        break;
+                    case "5":
+                        Value = 5;
+                        CurrentTable = new Views.TableProcess();
+                        //TableCreate = new Views.AddAnimalPlace();
                         break;
                 }
 

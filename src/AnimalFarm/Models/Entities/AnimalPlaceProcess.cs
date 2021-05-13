@@ -9,11 +9,14 @@ namespace AnimalFarm.Models.Entities
 {
     public class AnimalPlaceProcess
     {
-        public int ?AnimalPlaceId { get; set; }
+        [Key]
+        public int Id { get; init; }
+
+        public int AnimalPlaceId { get; set; }
         public AnimalPlace AnimalPlace { get; set; }
 
        
-        public int ?ProcessId { get; set; }
+        public int ProcessId { get; set; }
         public Process Process { get; set; }
 
      

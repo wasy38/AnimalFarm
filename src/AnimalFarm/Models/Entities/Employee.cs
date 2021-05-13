@@ -38,7 +38,6 @@ namespace AnimalFarm.Models.Entities
         public string Email { get; init; }
         public bool? IsWork { get; set; }
 
-        public ICollection<Process> Processes { get; set; }
         public ICollection<EmployeeProcess> EmployeePocesses { get; set; }
     }
 }

@@ -20,7 +20,6 @@ namespace AnimalFarm.Models.Entities
         public int PlaceId { get; set; }
         public Place Place { get; set; }
 
-        public ICollection<Process> Processes { get; set; }
         public ICollection<AnimalPlaceProcess> AnimalPlaceProcesses { get; set; }
     }
 }

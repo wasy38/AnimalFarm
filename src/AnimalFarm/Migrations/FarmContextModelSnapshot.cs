@@ -69,16 +69,23 @@ namespace AnimalFarm.Migrations
 
             modelBuilder.Entity("AnimalFarm.Models.Entities.AnimalPlaceProcess", b =>
                 {
-                    b.Property<int?>("AnimalPlaceId")
-                        .HasColumnType("int");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("ProcessId")
+                    b.Property<int>("AnimalPlaceId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
-                    b.HasKey("AnimalPlaceId", "ProcessId");
+                    b.Property<int>("ProcessId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AnimalPlaceId");
 
                     b.HasIndex("ProcessId");
 
@@ -135,16 +142,23 @@ namespace AnimalFarm.Migrations
 
             modelBuilder.Entity("AnimalFarm.Models.Entities.EmployeeProcess", b =>
                 {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
                     b.Property<int?>("EmployeeId")
                         .HasColumnType("int");
 
                     b.Property<int?>("ProcessId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
+                    b.HasKey("Id");
 
-                    b.HasKey("EmployeeId", "ProcessId");
+                    b.HasIndex("EmployeeId");
 
                     b.HasIndex("ProcessId");
 
@@ -158,9 +172,6 @@ namespace AnimalFarm.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("Count")
-                        .HasColumnType("int");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(100)
@@ -173,16 +184,23 @@ namespace AnimalFarm.Migrations
 
             modelBuilder.Entity("AnimalFarm.Models.Entities.EquipmentProcess", b =>
                 {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
                     b.Property<int?>("EquipmentId")
                         .HasColumnType("int");
 
                     b.Property<int?>("ProcessId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
+                    b.HasKey("Id");
 
-                    b.HasKey("EquipmentId", "ProcessId");
+                    b.HasIndex("EquipmentId");
 
                     b.HasIndex("ProcessId");
 
@@ -211,16 +229,23 @@ namespace AnimalFarm.Migrations
 
             modelBuilder.Entity("AnimalFarm.Models.Entities.FeedProcess", b =>
                 {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
                     b.Property<int?>("FeedId")
                         .HasColumnType("int");
 
                     b.Property<int?>("ProcessId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
+                    b.HasKey("Id");
 
-                    b.HasKey("FeedId", "ProcessId");
+                    b.HasIndex("FeedId");
 
                     b.HasIndex("ProcessId");
 
@@ -325,13 +350,13 @@ namespace AnimalFarm.Migrations
 
             modelBuilder.Entity("AnimalFarm.Models.Entities.AnimalPlaceProcess", b =>
                 {
-                    b.HasOne("AnimalFarm.Models.Entities.Process", "Process")
+                    b.HasOne("AnimalFarm.Models.Entities.AnimalPlace", "AnimalPlace")
                         .WithMany("AnimalPlaceProcesses")
                         .HasForeignKey("AnimalPlaceId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("AnimalFarm.Models.Entities.AnimalPlace", "AnimalPlace")
+                    b.HasOne("AnimalFarm.Models.Entities.Process", "Process")
                         .WithMany("AnimalPlaceProcesses")
                         .HasForeignKey("ProcessId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -355,17 +380,13 @@ namespace AnimalFarm.Migrations
 
             modelBuilder.Entity("AnimalFarm.Models.Entities.EmployeeProcess", b =>
                 {
-                    b.HasOne("AnimalFarm.Models.Entities.Process", "Process")
-                        .WithMany("EmployeePocesses")
-                        .HasForeignKey("EmployeeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("AnimalFarm.Models.Entities.Employee", "Employee")
                         .WithMany("EmployeePocesses")
-                        .HasForeignKey("ProcessId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("EmployeeId");
+
+                    b.HasOne("AnimalFarm.Models.Entities.Process", "Process")
+                        .WithMany("EmployeePocesses")
+                        .HasForeignKey("ProcessId");
 
                     b.Navigation("Employee");
 
@@ -374,17 +395,13 @@ namespace AnimalFarm.Migrations
 
             modelBuilder.Entity("AnimalFarm.Models.Entities.EquipmentProcess", b =>
                 {
-                    b.HasOne("AnimalFarm.Models.Entities.Process", "Process")
-                        .WithMany("EquipmentPocesses")
-                        .HasForeignKey("EquipmentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("AnimalFarm.Models.Entities.Equipment", "Equipment")
                         .WithMany("EquipmentProcesses")
-                        .HasForeignKey("ProcessId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("EquipmentId");
+
+                    b.HasOne("AnimalFarm.Models.Entities.Process", "Process")
+                        .WithMany("EquipmentPocesses")
+                        .HasForeignKey("ProcessId");
 
                     b.Navigation("Equipment");
 
@@ -393,17 +410,13 @@ namespace AnimalFarm.Migrations
 
             modelBuilder.Entity("AnimalFarm.Models.Entities.FeedProcess", b =>
                 {
-                    b.HasOne("AnimalFarm.Models.Entities.Process", "Process")
-                        .WithMany("FeedPocesses")
-                        .HasForeignKey("FeedId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("AnimalFarm.Models.Entities.Feed", "Feed")
                         .WithMany("FeedPocesses")
-                        .HasForeignKey("ProcessId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("FeedId");
+
+                    b.HasOne("AnimalFarm.Models.Entities.Process", "Process")
+                        .WithMany("FeedPocesses")
+                        .HasForeignKey("ProcessId");
 
                     b.Navigation("Feed");
 
