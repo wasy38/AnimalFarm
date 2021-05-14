@@ -1,5 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using System.Windows.Controls;
+using AnimalFarm.Models;
 using AnimalFarm.Models.Entities;
 
 namespace AnimalFarm.ViewModels
@@ -9,7 +10,6 @@ namespace AnimalFarm.ViewModels
     {
         public MainWindowViewModel()
         {
-
             CloseFrame = new RelayCommand(_=>
             {
                 CurrentTable = null;

@@ -15,60 +15,44 @@ namespace AnimalFarm.ViewModels
 {
     class supportClass : BaseViewModel
     {
-        //public AnimalPlaceProcess APP { get; set; }
-        //public EmployeeProcess EP { get; set; }
-        //public EquipmentProcess EQP { get; set; }
-        //public FeedProcess FP { get; set; }
-
-        public int AnimalId { get; set; }
-        public int PlaceId { get; set; }
-        public DateTime Date { get; set; }
-        public int ProcessId { get; set; }
-        
-
+        public AnimalPlaceProcess needed_AnimalPlaceProcess { get; set; }
+        public EmployeeProcess needed_EmployeeProcess { get; set; }
+        public EquipmentProcess needed_EquipmentProcess { get; set; }
+        public FeedProcess needed_FeedProcess { get; set; }
     }
 
     class TableProcess : BaseViewModel
     {
         public TableProcess()
         {
+            var _Places = new ObservableCollection<AnimalPlace>(FarmContext._context.AnimalPlaces.Include(x => x.Place).Include(x => x.Animal));
+            var _AnimalPlaces = new ObservableCollection<AnimalPlaceProcess>(FarmContext._context.AnimalPlaceProcesses.Include(x => x.AnimalPlace).Include(x => x.Process));
+            var _Employee = new ObservableCollection<EmployeeProcess>(FarmContext._context.EmployeeProcesses.Include(x => x.Employee).Include(x => x.Process));
+            var _Equipment = new ObservableCollection<EquipmentProcess>(FarmContext._context.EquipmentProcesses.Include(x => x.Equipment).Include(x => x.Process));
+            var _Feed = new ObservableCollection<FeedProcess>(FarmContext._context.FeedProcesses.Include(x => x.Feed).Include(x => x.Process));
 
             var grid = from AnimalPlaceProcess in FarmContext._context.AnimalPlaceProcesses
-                       join AnimalPlace in FarmContext._context.AnimalPlaces on AnimalPlaceProcess.AnimalPlaceId equals AnimalPlace.Id
-                       join Process in FarmContext._context.Processes on AnimalPlaceProcess.ProcessId equals Process.Id
+                       join EmployeeProcess in FarmContext._context.EmployeeProcesses on new { AnimalPlaceProcess.Process, AnimalPlaceProcess.Date } equals new { EmployeeProcess.Process, EmployeeProcess.Date } into a
+                       from EmployeeProcess in a.DefaultIfEmpty()
+                       join EquipmentProcess in FarmContext._context.EquipmentProcesses on new { AnimalPlaceProcess.Process, AnimalPlaceProcess.Date } equals new { EquipmentProcess.Process, EquipmentProcess.Date } into b
+                       from EquipmentProcess in b.DefaultIfEmpty()
+                       join FeedProcess in FarmContext._context.FeedProcesses on new { AnimalPlaceProcess.Process, AnimalPlaceProcess.Date } equals new { FeedProcess.Process, FeedProcess.Date } into c
+                       from FeedProcess in c.DefaultIfEmpty()
                        select new supportClass
                        {
-                           AnimalId = AnimalPlace.AnimalId,
-                           PlaceId = AnimalPlace.PlaceId,
-                           Date = AnimalPlaceProcess.Date,
-                           ProcessId = Process.Id
+                           needed_EmployeeProcess = EmployeeProcess,
+                           needed_AnimalPlaceProcess = AnimalPlaceProcess,
+                           needed_EquipmentProcess = EquipmentProcess,
+                           needed_FeedProcess = FeedProcess
                        };
             supportCollection = new ObservableCollection<supportClass>(grid);
 
-            //foreach (var app in FarmContext._context.AnimalPlaceProcesses)
-            //{
-            //    app.AnimalPlace = FarmContext._context.AnimalPlaces.Find(app.AnimalPlaceId);
-            //    app.Process = FarmContext._context.Processes.Find(app.ProcessId);
-            //}
-            //foreach (var ep in FarmContext._context.EmployeeProcesses)
-            //{
-            //    ep.Employee = FarmContext._context.Employees.Find(ep.EmployeeId);
-            //    ep.Process = FarmContext._context.Processes.Find(ep.ProcessId);
-            //}
-            //foreach (var eqp in FarmContext._context.EquipmentProcesses)
-            //{
-            //    eqp.Equipment = FarmContext._context.Equipments.Find(eqp.EquipmentId);
-            //    eqp.Process = FarmContext._context.Processes.Find(eqp.ProcessId);
-            //}
-            //foreach (var fp in FarmContext._context.FeedProcesses)
-            //{
-            //    fp.Feed = FarmContext._context.Feeds.Find(fp.FeedId);
-            //    fp.Process = FarmContext._context.Processes.Find(fp.ProcessId);
-            //}
+           
 
         }
 
         #region collections
+
 
         public ObservableCollection<supportClass> supportCollection { get; set; }      
 

@@ -14,7 +14,27 @@
             <RowDefinition Height="auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <DataGrid Grid.Row="1" IsReadOnly="True" CanUserAddRows="False" Grid.Column="1" Name="dg" AutoGenerateColumns="True"/>
+        <DataGrid Grid.Row="1" IsReadOnly="True" CanUserAddRows="False" AutoGenerateColumns="False" ItemsSource="{Binding supportCollection}" RenderTransformOrigin="0.5,0.5">
+            <DataGrid.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="0.029"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </DataGrid.RenderTransform>
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Process name" Binding="{Binding needed_AnimalPlaceProcess.Process.Name}" MinWidth="25"/>
+                <DataGridTextColumn Header="Animal Id" Binding="{Binding needed_AnimalPlaceProcess.AnimalPlace.AnimalId}" MinWidth="80"/>
+                <DataGridTextColumn Header="Place" Binding="{Binding needed_AnimalPlaceProcess.AnimalPlace.Place.Name}" MinWidth="80"/>
+                <DataGridTextColumn Header="Employee firstname" Binding="{Binding needed_EmployeeProcess.Employee.FirstName}" MinWidth="80"/>
+                <DataGridTextColumn Header="Employee secondname" Binding="{Binding needed_EmployeeProcess.Employee.SecondName}" MinWidth="80"/>
+                <DataGridTextColumn Header="Employee patronimic" Binding="{Binding needed_EmployeeProcess.Employee.Patronymic}" MinWidth="80"/>
+                <DataGridTextColumn Header="Feed" Binding="{Binding needed_FeedProcess.Feed.Name}" MinWidth="80"/>
+                <DataGridTextColumn Header="Equipment" Binding="{Binding needed_EquipmentProcess.Equipment.Name}" MinWidth="80"/>
+                <DataGridTextColumn Header="Date" Binding="{Binding needed_EquipmentProcess.Date}" MinWidth="80"/>
+            </DataGrid.Columns>
+        </DataGrid>
 
     </Grid>
 </UserControl>
