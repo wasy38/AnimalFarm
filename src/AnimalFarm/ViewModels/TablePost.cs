@@ -36,18 +36,6 @@ namespace AnimalFarm.ViewModels
             {
                 return sellectedName != null;
             });
-
-
-            SosachParty = new RelayCommand(_ =>
-            {
-                if (GridPost.Filter == null)
-                    GridPost.Filter = animal =>
-                    {
-                        var a = animal as Animal;
-                        return a.IsMasculine ?? false;
-                    };
-                else GridPost.Filter = null;
-            });
         }
 
         #region public field
@@ -63,7 +51,6 @@ namespace AnimalFarm.ViewModels
         #endregion
 
         #region Metods
-        public RelayCommand SosachParty { get; }
         public RelayCommand CreatePost { get; }
         #endregion
     }

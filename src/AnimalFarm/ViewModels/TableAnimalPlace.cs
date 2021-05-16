@@ -41,10 +41,13 @@ namespace AnimalFarm.ViewModels
             SosachParty = new RelayCommand(_ =>
             {
                 if (GridAnimalPlace.Filter == null)
-                    GridAnimalPlace.Filter = animal =>
+                    GridAnimalPlace.Filter = animalplace =>
                     {
-                        var a = animal as Animal;
-                        return a.IsMasculine ?? false;
+                        var ap = animalplace as AnimalPlace;
+                        return ((firstDate == default) ? true : ap.Lease >= firstDate) && 
+                        ((secondDate == default) ? true : ap.Lease <= secondDate) && 
+                        (findAnimal == null ? true : (ap.AnimalId == findAnimal)) &&
+                        (findPlace == null ? true : (ap.PlaceId == FarmContext._context.Places.Where(x => x.Name == findPlace).FirstOrDefault().Id) );
                     };
                 else GridAnimalPlace.Filter = null;
             });
@@ -55,6 +58,10 @@ namespace AnimalFarm.ViewModels
         public AnimalPlace newAnimalPlace;
         public string sellectedPlace { get; set; }
         public int? sellectedAnimal {get;set;}
+        public DateTime? firstDate { get; set; }
+        public DateTime? secondDate { get; set; }
+        public string findPlace { get; set; }
+        public int? findAnimal { get; set; }
 
         #endregion
 

@@ -14,7 +14,17 @@
             <RowDefinition Height="auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Button Content="Сосыч ПАТИ!!!" Command="{Binding SosachParty}"/>
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="Change date: from" Width="75" Height="20" TextWrapping="Wrap"/>
+            <DatePicker Width="90" SelectedDate="{Binding firstDate}"/>
+            <TextBlock Text="until" Width="25" Height="20" TextWrapping="Wrap"/>
+            <DatePicker Width="90" SelectedDate="{Binding secondDate}"/>
+            <TextBlock Text=" Place:" Width="40" Height="20" TextWrapping="Wrap"/>
+            <ComboBox ItemsSource="{Binding PlaceName}" SelectedItem="{Binding findPlace, Mode=TwoWay}" Width="100" />
+            <TextBlock Text=" Animal:" Width="50" Height="20" TextWrapping="Wrap"/>
+            <ComboBox ItemsSource="{Binding IdAnimal}" SelectedItem="{Binding findAnimal, Mode=TwoWay}" Width="50" />
+        </StackPanel>
+        <Button HorizontalAlignment="Right" Width="50" Content="Find" Command="{Binding SosachParty}"/>
         <DataGrid Grid.Row="1" IsReadOnly="True" CanUserAddRows="False" Grid.Column="1" Name="dg" ItemsSource="{Binding GridAnimalPlace}" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID Animal" Binding="{Binding AnimalId}" MinWidth="25"/>

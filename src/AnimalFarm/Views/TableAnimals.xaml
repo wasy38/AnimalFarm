@@ -17,6 +17,7 @@
             <RowDefinition Height="auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
+        
         <StackPanel Orientation="Horizontal">
             <TextBlock Text="Birthday: from" Width="80" Height="20" TextWrapping="Wrap"/>
             <DatePicker Width="30" SelectedDate="{Binding firstDate}"/>

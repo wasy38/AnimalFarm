@@ -48,10 +48,16 @@ namespace AnimalFarm.ViewModels
             SosachParty = new RelayCommand(_ =>
             {
                 if (GridEmployee.Filter == null)
-                    GridEmployee.Filter = animal =>
+                    GridEmployee.Filter = employee =>
                     {
-                        var a = animal as Animal;
-                        return a.IsMasculine ?? false;
+                        var e = employee as Employee;
+                        return ((firstDate == default) ? true : e.Birthday >= firstDate) &&
+                        ((secondDate == default) ? true : e.Birthday <= secondDate) &&
+                        (findPost == null ? true : (e.PostId == FarmContext._context.Places.Where(x => x.Name == findPost).FirstOrDefault().Id)) &&
+                        (findStatus == null ? true : (e.IsWork == findStatus))&&
+                        (findFName == null ? true : (e.FirstName == findFName)) &&
+                        (findSName == null ? true : (e.SecondName == findSName)) &&
+                        (findPan == null ? true : (e.Patronymic == findPan));
                     };
                 else GridEmployee.Filter = null;
             });
@@ -68,6 +74,15 @@ namespace AnimalFarm.ViewModels
         public bool? sellectedStatus { get; set; }
 
         public Employee newEmployee;
+
+        //
+        public DateTime? firstDate { get; set; }
+        public DateTime? secondDate { get; set; }
+        public bool? findStatus { get; set; }
+        public string findPost { get; set; }
+        public string findFName { get; set; }
+        public string findSName { get; set; }
+        public string findPan { get; set; }
 
         #endregion
 
