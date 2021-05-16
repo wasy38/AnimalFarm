@@ -47,7 +47,7 @@ namespace AnimalFarm.ViewModels
                     GridAnimals.Filter = animal =>
                     {
                         var a = animal as Animal;
-                        return a.IsMasculine ?? false;
+                        return (findSex == null ? true : (a.IsMasculine == findSex)) && ( (firstDate ==default) ? true : a.Birthday >= firstDate) && ((secondDate == default) ? true :  a.Birthday <= secondDate) && (findSpecies==null ? true : (a.SpeciesId== FarmContext._context.Specieses.Where(x => x.Name == findSpecies).FirstOrDefault().Id));
                     };
                 else GridAnimals.Filter = null;
             });
@@ -59,6 +59,11 @@ namespace AnimalFarm.ViewModels
         
         public Animal newAnimal;
         public string SellectedSpecies { get;set; }
+        //for find
+        public DateTime? firstDate { get; set; }
+        public DateTime? secondDate { get; set; }
+        public bool? findSex { get; set; }
+        public string findSpecies { get; set; }
 
         #endregion
 

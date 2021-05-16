@@ -79,7 +79,7 @@ namespace AnimalFarm.ViewModels
                     case "5":
                         Value = 5;
                         CurrentTable = new Views.TableProcess();
-                        //TableCreate = new Views.AddAnimalPlace();
+                        TableCreate = new Views.AddProcess();
                         break;
                     case "6":
                         Value = 6;

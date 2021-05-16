@@ -28,7 +28,7 @@
             <Button Command="{Binding CloseFrame}" BorderBrush="White" Content="Close table" Margin="20 5 30 0"/>
             <Button Command="{Binding RefreshFrame}" BorderBrush="White" Content="Refresh table" Margin="20 5 30 0"/>
         </StackPanel>
-        <ScrollViewer Margin="0 55 0 0">
+        <ScrollViewer Margin="0 55 0 0" VerticalScrollBarVisibility="Auto">
             <StackPanel>
                 <StackPanel.Resources>
                     <Style TargetType="Button">

@@ -17,7 +17,22 @@
             <RowDefinition Height="auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Button Content="Сосыч ПАТИ!!!" Command="{Binding SosachParty}"/>
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="Birthday: from" Width="80" Height="20" TextWrapping="Wrap"/>
+            <DatePicker Width="30" SelectedDate="{Binding firstDate}"/>
+            <TextBlock Text="until" Width="25" Height="20" TextWrapping="Wrap"/>
+            <DatePicker Width="30" SelectedDate="{Binding secondDate}"/>
+            <TextBlock Text=" Sex:" Width="40" Height="20" TextWrapping="Wrap"/>
+            <ComboBox Width="60">
+                <ComboBoxItem Content="Male" IsSelected="{Binding findSex}"/>
+                <ComboBoxItem Content="Female"/>
+            </ComboBox>
+            <TextBlock Text=" Species:" Width="50" Height="20" TextWrapping="Wrap"/>
+            <ComboBox Width="100" ItemsSource="{Binding SpeciesName}" SelectedItem="{Binding findSpecies, Mode=OneWayToSource}"/>
+        </StackPanel>
+        <Button HorizontalAlignment="Right" Width="50" Content="Find" Command="{Binding SosachParty}"/>
+        
+
         <DataGrid Grid.Row="1" IsReadOnly="True" CanUserAddRows="False" Grid.Column="1" Name="dg" ItemsSource="{Binding GridAnimals}" AutoGenerateColumns="False">
              <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Binding="{Binding Id}" MinWidth="25"/>

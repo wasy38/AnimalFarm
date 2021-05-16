@@ -32,7 +32,7 @@
                 <DataGridTextColumn Header="Employee patronimic" Binding="{Binding needed_EmployeeProcess.Employee.Patronymic}" MinWidth="80"/>
                 <DataGridTextColumn Header="Feed" Binding="{Binding needed_FeedProcess.Feed.Name}" MinWidth="80"/>
                 <DataGridTextColumn Header="Equipment" Binding="{Binding needed_EquipmentProcess.Equipment.Name}" MinWidth="80"/>
-                <DataGridTextColumn Header="Date" Binding="{Binding needed_EquipmentProcess.Date}" MinWidth="80"/>
+                <DataGridTextColumn Header="Date" Binding="{Binding needed_AnimalPlaceProcess.Date}" MinWidth="80"/>
             </DataGrid.Columns>
         </DataGrid>
 

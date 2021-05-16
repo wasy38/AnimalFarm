@@ -3,10 +3,53 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:AnimalFarm.Views"
+             xmlns:vm="clr-namespace:AnimalFarm.ViewModels"
+             xmlns:local="clr-namespace:AnimalFarm"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="300" d:DesignWidth="200" Background="White">
+    <UserControl.DataContext>
+        <vm:TableProcess/>
+    </UserControl.DataContext>
     <Grid>
-            
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="25"/>
+        </Grid.RowDefinitions>
+
+        <ScrollViewer Grid.Row="0" VerticalScrollBarVisibility="Auto">
+            <StackPanel>
+                <TextBlock Text="Process:" Width="100" Height="20" TextWrapping="Wrap" Margin="0 10 0 0"/>
+                <ComboBox Width="150" DisplayMemberPath="Name" ItemsSource="{Binding _Process}" SelectedItem="{Binding sellectedProcess, Mode=OneWayToSource}"/>
+                <TextBlock Text="Employee:" Width="100" Height="20" TextWrapping="Wrap" Margin="0 10 0 0"/>
+                <ComboBox Width="150" ItemsSource="{Binding _Employee}" SelectedItem="{Binding sellectedEmploy, Mode=OneWayToSource}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <TextBlock Text="{Binding FirstName}"/>
+                                <TextBlock Text="{Binding SecondName}"/>
+                                <TextBlock Text="{Binding Patronymic}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+                <TextBlock Text="Equipment:" Width="100" Height="20" TextWrapping="Wrap" Margin="0 10 0 0"/>
+                <ComboBox Width="150" DisplayMemberPath="Name" ItemsSource="{Binding _Equipment}" SelectedItem="{Binding sellectedEquipment, Mode=OneWayToSource}"/>
+                <TextBlock Text="Feed:" Width="100" Height="20" TextWrapping="Wrap" Margin="0 10 0 0"/>
+                <ComboBox Width="150" DisplayMemberPath="Name" ItemsSource="{Binding _Feed}" SelectedItem="{Binding sellectedFeed, Mode=OneWayToSource}"/>
+                <TextBlock Text="Animal in place:" Width="100" Height="20" TextWrapping="Wrap" Margin="0 10 0 0"/>
+                <ComboBox Width="150" ItemsSource="{Binding _AnimalPlace}" SelectedItem="{Binding sellectedAnimalPlace, Mode=OneWayToSource}" Margin="0 0 0 10">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <TextBlock Text="{Binding Id}"/>
+                                <TextBlock Text="{Binding AnimalId}"/>
+                                <TextBlock Text="{Binding Place.Name}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+            </StackPanel>
+        </ScrollViewer>
+        <Button Grid.Row="1" Content="Create record" Command="{Binding CreateProcess}"/>
     </Grid>
 </UserControl>
