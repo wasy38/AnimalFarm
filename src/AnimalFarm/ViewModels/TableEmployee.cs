@@ -53,7 +53,7 @@ namespace AnimalFarm.ViewModels
                         var e = employee as Employee;
                         return ((firstDate == default) ? true : e.Birthday >= firstDate) &&
                         ((secondDate == default) ? true : e.Birthday <= secondDate) &&
-                        (findPost == null ? true : (e.PostId == FarmContext._context.Places.Where(x => x.Name == findPost).FirstOrDefault().Id)) &&
+                        (findPost == null ? true : (e.PostId == FarmContext._context.Posts.Where(x => x.Name == findPost).FirstOrDefault().Id)) &&
                         (findStatus == null ? true : (e.IsWork == findStatus))&&
                         (findFName == null ? true : (e.FirstName == findFName)) &&
                         (findSName == null ? true : (e.SecondName == findSName)) &&
