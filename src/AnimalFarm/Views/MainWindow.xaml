@@ -39,6 +39,7 @@
                     <Button Command="{Binding OpenFrame}" CommandParameter="6" Content="Speecieses" />
                     <Button Command="{Binding OpenFrame}" CommandParameter="7" Content="Posts" />
                     <Button Command="{Binding OpenFrame}" CommandParameter="8" Content="Places" />
+                     <Button Command="{Binding OpenFrame}" CommandParameter="9" Content="Process type" />
                     <Button Command="{Binding OpenFrame}" CommandParameter="1" Content="Animals" />
                     <Button Command="{Binding OpenFrame}" CommandParameter="2" Content="Employeeses" />
                     <Button Command="{Binding OpenFrame}" CommandParameter="3" Content="Equipments" />

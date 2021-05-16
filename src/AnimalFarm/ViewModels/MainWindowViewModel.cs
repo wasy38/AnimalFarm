@@ -46,6 +46,9 @@ namespace AnimalFarm.ViewModels
                     case 8:
                         CurrentTable = new Views.TablePlace();
                         break;
+                    case 9:
+                        CurrentTable = new Views.TableProc();
+                        break;
                     default:
                         CurrentTable = null;
                         break;
@@ -95,6 +98,11 @@ namespace AnimalFarm.ViewModels
                         Value = 8;
                         CurrentTable = new Views.TablePlace();
                         TableCreate = new Views.AddPlace();
+                        break;
+                    case "9":
+                        Value = 9;
+                        CurrentTable = new Views.TableProc();
+                        TableCreate = new Views.AddProc();
                         break;
                 }
 
