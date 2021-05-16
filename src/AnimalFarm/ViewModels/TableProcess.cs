@@ -34,6 +34,8 @@ namespace AnimalFarm.ViewModels
             _Equipment = new ObservableCollection<Equipment>(FarmContext._context.Equipments);
             _Feed = new ObservableCollection<Feed>(FarmContext._context.Feeds);
             _AnimalPlace = new ObservableCollection<AnimalPlace>(FarmContext._context.AnimalPlaces.Include(x => x.Place).Include(x => x.Animal));
+            _Place = new ObservableCollection<Place>(FarmContext._context.Places);
+            _Animal = new ObservableCollection<Animal>(FarmContext._context.Animals);
 
             var grid = from AnimalPlaceProcess in FarmContext._context.AnimalPlaceProcesses
                        join EmployeeProcess in FarmContext._context.EmployeeProcesses on new { AnimalPlaceProcess.Process, AnimalPlaceProcess.Date } equals new { EmployeeProcess.Process, EmployeeProcess.Date } into a
@@ -50,6 +52,7 @@ namespace AnimalFarm.ViewModels
                            needed_FeedProcess = FeedProcess
                        };
             supportCollection = new ObservableCollection<supportClass>(grid);
+            GridProcess= CollectionViewSource.GetDefaultView(supportCollection);
 
             CreateProcess = new RelayCommand(obj =>
             {
@@ -92,19 +95,28 @@ namespace AnimalFarm.ViewModels
                 }
             }, _ =>
             {
-                return sellectedProcess!=null && (sellectedAnimalPlace!=null || sellectedEmploy!=null || sellectedEquipment != null || sellectedFeed!=null);
+                return sellectedProcess!=null && sellectedAnimalPlace!=null;
             });
 
 
             SosachParty = new RelayCommand(_ =>
             {
-                //if (GridAnimalPlace.Filter == null)
-                //    GridAnimalPlace.Filter = animal =>
-                //    {
-                //        var a = animal as Animal;
-                //        return a.IsMasculine ?? false;
-                //    };
-                //else GridAnimalPlace.Filter = null;
+                if (GridProcess.Filter == null)
+                    GridProcess.Filter = process =>
+                    {
+                        var p = process as supportClass;
+                        return ((firstDate == default) ? true : p.needed_AnimalPlaceProcess.Date >= firstDate) &&
+                        ((secondDate == default) ? true : p.needed_AnimalPlaceProcess.Date <= secondDate) &&
+                        ((findFName == null) ? true : ((p.needed_EmployeeProcess == null) ? false : p.needed_EmployeeProcess.Employee.FirstName == findFName)) &&
+                        ((findSName == null) ? true : ((p.needed_EmployeeProcess == null) ? false : p.needed_EmployeeProcess.Employee.SecondName == findSName)) &&
+                        ((findPan == null) || (p.needed_EmployeeProcess != null && p.needed_EmployeeProcess.Employee.Patronymic == findPan)) &&
+                        (findProc == null ? true : (p.needed_AnimalPlaceProcess.Process == findProc)) &&
+                        (findPlace == null ? true : (p.needed_AnimalPlaceProcess.AnimalPlace.Place == findPlace)) &&
+                        (findAnimal == null ? true : (p.needed_AnimalPlaceProcess.AnimalPlace.Animal == findAnimal)) &&
+                        ((findEquipment == null) || (p.needed_EquipmentProcess == null && p.needed_EquipmentProcess.Equipment == findEquipment)) &&
+                        ((findFeed == null) || (p.needed_FeedProcess ==null && p.needed_FeedProcess.Feed == findFeed));
+                    };
+                else GridProcess.Filter = null;
             });
 
         }
@@ -121,16 +133,31 @@ namespace AnimalFarm.ViewModels
         public Employee sellectedEmploy { get; set; }
         public Process sellectedProcess { get; set; }
 
+        //
+        public DateTime? firstDate { get; set; }
+        public DateTime? secondDate { get; set; }
+        public string findFName { get; set; }
+        public string findSName { get; set; }
+        public string findPan { get; set; }
+        public Process findProc { get; set; }
+        public Place findPlace { get; set; }
+        public Animal findAnimal { get; set; }
+        public Equipment findEquipment { get; set; }
+        public Feed findFeed { get; set; }
+
         #endregion
 
         #region Collections
 
+        public ICollectionView GridProcess { get; }
         public ObservableCollection<AnimalPlace> _AnimalPlace { get; set; }
         public ObservableCollection<Feed> _Feed { get; set; }
         public ObservableCollection<Equipment> _Equipment { get; set; }
         public ObservableCollection<Employee> _Employee { get; set; }
         public ObservableCollection<Process> _Process { get; set; }
         public ObservableCollection<supportClass> supportCollection { get; set; }
+        public ObservableCollection<Animal> _Animal { get; set; }
+        public ObservableCollection<Place> _Place { get; set; }
 
         #endregion
 

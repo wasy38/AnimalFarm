@@ -14,7 +14,6 @@
             <RowDefinition Height="auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Button Content="Сосыч ПАТИ!!!" Command="{Binding SosachParty}"/>
         <DataGrid Grid.Row="1" IsReadOnly="True" CanUserAddRows="False" Grid.Column="1" Name="dg" ItemsSource="{Binding GridSpecies}" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Binding="{Binding Id}" MinWidth="25"/>

@@ -41,9 +41,19 @@
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
                             <StackPanel>
-                                <TextBlock Text="{Binding Id}"/>
-                                <TextBlock Text="{Binding AnimalId}"/>
-                                <TextBlock Text="{Binding Place.Name}"/>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Id: "/>
+                                    <TextBlock Text="{Binding Id}"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Animal Id: "/>
+                                    <TextBlock Text="{Binding AnimalId}"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Place: "/>
+                                    <TextBlock Text="{Binding Place.Name}"/>
+                                </StackPanel>
                             </StackPanel>
                         </DataTemplate>
                     </ComboBox.ItemTemplate>

@@ -14,15 +14,36 @@
             <RowDefinition Height="auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <DataGrid Grid.Row="1" IsReadOnly="True" CanUserAddRows="False" AutoGenerateColumns="False" ItemsSource="{Binding supportCollection}" RenderTransformOrigin="0.5,0.5">
-            <DataGrid.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform/>
-                    <RotateTransform Angle="0.029"/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </DataGrid.RenderTransform>
+
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="Process:" Width="37" Height="20" TextWrapping="Wrap"/>
+            <ComboBox Width="70" DisplayMemberPath="Name" ItemsSource="{Binding _Process}" SelectedItem="{Binding findProc, Mode=OneWayToSource}"/>
+            
+            <TextBlock Text=" animal:" Width="45" Height="20" TextWrapping="Wrap"/>
+            <ComboBox Width="60" DisplayMemberPath="Id" ItemsSource="{Binding _Animal}" SelectedItem="{Binding findAnimal, Mode=OneWayToSource}"/>
+            <TextBlock Text=" Place:" Width="37" Height="20" TextWrapping="Wrap"/>
+            <ComboBox Width="60" DisplayMemberPath="Name" ItemsSource="{Binding _Place}" SelectedItem="{Binding findPlace, Mode=OneWayToSource}"/>
+
+            <TextBlock Text=" Equipment:" Width="65" Height="20" TextWrapping="Wrap"/>
+            <ComboBox Width="60" DisplayMemberPath="Name" ItemsSource="{Binding _Equipment}" SelectedItem="{Binding findEquipment, Mode=OneWayToSource}"/>
+            <TextBlock Text=" Feed:" Width="37" Height="20" TextWrapping="Wrap"/>
+            <ComboBox Width="60" DisplayMemberPath="Name" ItemsSource="{Binding _Feed}" SelectedItem="{Binding findFeed, Mode=OneWayToSource}"/>
+            
+            <TextBlock Text=" First name:" Width="62" Height="20"/>
+            <TextBox Text="{Binding findFName, UpdateSourceTrigger=PropertyChanged}" Width="50" Height="20" TextWrapping="Wrap"/>
+            <TextBlock Text=" Second name:" Width="78" Height="20"/>
+            <TextBox Text="{Binding findSName, UpdateSourceTrigger=PropertyChanged}" Width="50" Height="20" TextWrapping="Wrap"/>
+            <TextBlock Text=" Patronymic:" Width="65" Height="20"/>
+            <TextBox Text="{Binding findPan, UpdateSourceTrigger=PropertyChanged}" Width="50" Height="20" TextWrapping="Wrap"/>
+            
+            <TextBlock Text=" Date: from" Width="80" Height="20" TextWrapping="Wrap"/>
+            <DatePicker Width="30" SelectedDate="{Binding firstDate}"/>
+            <TextBlock Text="until" Width="25" Height="20" TextWrapping="Wrap"/>
+            <DatePicker Width="30" SelectedDate="{Binding secondDate}"/>
+        </StackPanel>
+        <Button HorizontalAlignment="Right" Width="40" Content="Find" Command="{Binding SosachParty}"/>
+
+        <DataGrid Grid.Row="1" IsReadOnly="True" CanUserAddRows="False" AutoGenerateColumns="False" ItemsSource="{Binding GridProcess}" RenderTransformOrigin="0.5,0.5">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Process name" Binding="{Binding needed_AnimalPlaceProcess.Process.Name}" MinWidth="25"/>
                 <DataGridTextColumn Header="Animal Id" Binding="{Binding needed_AnimalPlaceProcess.AnimalPlace.AnimalId}" MinWidth="80"/>
